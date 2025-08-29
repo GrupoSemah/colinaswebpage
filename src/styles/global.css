@@ -1,1 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Gilroy:wght@300;400;500;600;700;800&display=swap');
 @import "tailwindcss";
+
+@theme {
+  --color-dark-gray: #222222;
+  --color-light-gray: #DEDDDD;
+  --color-green-primary: #81BA27;
+  --color-green-dark: #055928;
+  
+  --font-family-sans: 'Gilroy', ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  
+  /* Container max-width para evitar que se rompa en pantallas grandes */
+  --max-width-7xl: 80rem; /* 1280px */
+}
+
+/* Forzar max-width en todos los containers */
+.container {
+  max-width: 1280px !important;
+}
