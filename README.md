@@ -1,9 +1,6 @@
 <div align="center">
   <img src="./public/images/logo.webp" alt="Colinas de la Paz" width="200" height="auto" />
   
-  # 🌿 Colinas de la Paz
-
-  
   **Sitio Web Oficial - Cementerio y Servicios Funerarios**
   
   *Panamá Oeste • Más de 15 años de experiencia*
