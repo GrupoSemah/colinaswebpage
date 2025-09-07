@@ -54,6 +54,7 @@
   --color-light-gray: #DEDDDD;
   --color-green-primary: #81BA27;
   --color-green-dark: #055928;
+  --color-gray-accessible: #666666; /* Nuevo color para mejor contraste */
   
   --font-family-sans: 'Gilroy', ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   
