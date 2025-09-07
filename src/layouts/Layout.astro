@@ -1,20 +1,131 @@
 
 
 ---
+export interface Props {
+	title: string;
+	description?: string;
+	image?: string;
+	canonical?: string;
+	noindex?: boolean;
+}
+
+const { 
+	title, 
+	description = "Colinas de la Paz - Cementerio y servicios funerarios en Panamá Oeste. Lotes, nichos, cremaciones y servicios completos con más de 15 años de experiencia.",
+	image = "/images/og-image.webp",
+	canonical,
+	noindex = false 
+} = Astro.props;
+
+const canonicalURL = canonical || new URL(Astro.url.pathname, Astro.site);
+const imageURL = new URL(image, Astro.site);
+
+import Header from '../components/Shared/header/Header.astro';
+import Footer from '../components/Shared/footer/Footer.astro';
 import '../styles/global.css';
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="es">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		
+		<!-- SEO Meta Tags -->
+		<title>{title}</title>
+		<meta name="description" content={description} />
+		<link rel="canonical" href={canonicalURL} />
+		{noindex && <meta name="robots" content="noindex, nofollow" />}
+		
+		<!-- Open Graph -->
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={imageURL} />
+		<meta property="og:url" content={canonicalURL} />
+		<meta property="og:site_name" content="Colinas de la Paz" />
+		<meta property="og:locale" content="es_PA" />
+		
+		<!-- Twitter Card -->
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={imageURL} />
+		
+		<!-- Additional SEO -->
+		<meta name="theme-color" content="#81BA27" />
+		<meta name="author" content="Colinas de la Paz" />
+		<meta name="language" content="Spanish" />
+		<meta name="geo.region" content="PA" />
+		<meta name="geo.placename" content="Panamá Oeste" />
+		
+		<!-- PWA Manifest -->
+		<link rel="manifest" href="/manifest.json" />
+		
+		<!-- Apple Touch Icons -->
+		<link rel="apple-touch-icon" href="/images/logo.webp" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+		
+		<!-- Preload local fonts for performance -->
+		<link rel="preload" href="/fonts/Gilroy-Light.woff" as="font" type="font/woff" crossorigin />
+		<link rel="preload" href="/fonts/Gilroy-Extrabold.woff" as="font" type="font/woff" crossorigin />
+		
+		<!-- Service Worker Registration -->
+		<script>
+			if ('serviceWorker' in navigator) {
+				window.addEventListener('load', () => {
+					navigator.serviceWorker.register('/sw.js')
+						.then((registration) => {
+							console.log('SW registered: ', registration);
+						})
+						.catch((registrationError) => {
+							console.log('SW registration failed: ', registrationError);
+						});
+				});
+			}
+		</script>
+
+		<!-- Structured Data -->
+		<script type="application/ld+json">
+		{
+			"@context": "https://schema.org",
+			"@type": "Organization",
+			"name": "Colinas de la Paz",
+			"description": "Cementerio y servicios funerarios en Panamá Oeste con más de 15 años de experiencia",
+			"url": "https://colinasdelapaz.com",
+			"logo": "https://colinasdelapaz.com/images/logo.webp",
+			"address": {
+				"@type": "PostalAddress",
+				"addressRegion": "Panamá Oeste",
+				"addressCountry": "PA"
+			},
+			"contactPoint": {
+				"@type": "ContactPoint",
+				"contactType": "customer service",
+				"availableLanguage": "Spanish"
+			},
+			"sameAs": [
+				"https://www.facebook.com/colinasdelapazpanama",
+				"http://instagram.com/colinasdelapazpanama"
+			],
+			"openingHours": [
+				"Mo-Fr 08:00-17:00",
+				"Sa 08:00-15:00"
+			],
+			"priceRange": "$$",
+			"areaServed": "Panamá Oeste"
+		}
+		</script>
 	</head>
-	<body>
-		<slot />
+	<body class="bg-white">
+		<Header />
+		<main class="pt-20">
+			<slot />
+		</main>
+		<Footer />
 	</body>
 </html>
 

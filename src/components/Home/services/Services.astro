@@ -13,14 +13,15 @@
       </div>
     </div>
     
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+      <!-- Row 1 -->
       <!-- Pre-Necesidad -->
-      <div class="relative group cursor-pointer h-[450px] [perspective:1000px]">
+      <div class="relative group cursor-pointer h-[350px] sm:h-[400px] lg:h-[450px] [perspective:1000px]" onclick="window.location.href='/preneed'">
         <div class="relative h-full w-full transition-transform duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
           <!-- Front Side -->
           <div class="absolute inset-0 h-full w-full rounded-md overflow-hidden [backface-visibility:hidden]">
             <img 
-              src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=300&fit=crop&crop=center" 
+              src="/images/home/Pre-necesidad - card.webp" 
               alt="Pre-Necesidad" 
               class="w-full h-full object-cover"
             />
@@ -28,7 +29,7 @@
             
             <!-- Content overlay -->
             <div class="absolute inset-0 flex flex-col justify-center items-center p-6">
-              <h3 class="text-white text-xl font-bold mb-2">Pre-Necesidad</h3>
+              <h3 class="text-white text-xl lg:text-2xl font-bold mb-2">Pre-Necesidad</h3>
               
               <!-- Green button bottom right with diagonal down-right arrow -->
               <div class="absolute bottom-1 right-1">
@@ -53,7 +54,7 @@
             
             <!-- Button bottom right -->
             <div class="absolute bottom-8 right-8">
-              <a href="/preneed" class="text-white font-semibold flex items-center gap-2 hover:opacity-80 transition-opacity duration-300">
+              <a href="/preneed" class="text-white font-semibold flex items-center gap-2 hover:text-green-dark hover:scale-110 transition-all duration-300">
                 Conoce más
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7V17"></path>
@@ -65,12 +66,12 @@
       </div>
 
       <!-- Necesidad Inmediata -->
-      <div class="relative group cursor-pointer h-[450px] [perspective:1000px]">
+      <div class="relative group cursor-pointer h-[350px] sm:h-[400px] lg:h-[450px] [perspective:1000px]" onclick="window.location.href='/need'">
         <div class="relative h-full w-full transition-transform duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
           <!-- Front Side -->
           <div class="absolute inset-0 h-full w-full rounded-md overflow-hidden [backface-visibility:hidden]">
             <img 
-              src="https://images.unsplash.com/photo-1544198365-f5d60b6d8190?w=400&h=300&fit=crop&crop=center" 
+              src="/images/home/Necesidad Inmediata - card.webp" 
               alt="Necesidad Inmediata" 
               class="w-full h-full object-cover"
             />
@@ -78,7 +79,7 @@
             
             <!-- Content overlay -->
             <div class="absolute inset-0 flex flex-col justify-center items-center p-6">
-              <h3 class="text-white text-xl font-bold mb-2">Necesidad Inmediata</h3>
+              <h3 class="text-white text-xl lg:text-2xl font-bold mb-2">Necesidad Inmediata</h3>
               
               <!-- Green button bottom right with diagonal down-right arrow -->
               <div class="absolute bottom-1 right-1">
@@ -94,7 +95,7 @@
           <!-- Back Side -->
           <div class="absolute inset-0 h-full w-full rounded-md bg-green-primary [backface-visibility:hidden] [transform:rotateY(180deg)] p-8 flex flex-col justify-center">
             <!-- Title and description centered -->
-            <div class="text-left">
+            <div class="text-center">
               <h3 class="text-white text-2xl font-bold mb-4">Necesidad Inmediata</h3>
               <p class="text-white text-sm leading-relaxed max-w-xs">
                 Apoyo completo y profesional en momentos difíciles con servicios inmediatos y acompañamiento integral.
@@ -103,7 +104,7 @@
             
             <!-- Button bottom right -->
             <div class="absolute bottom-8 right-8">
-              <a href="/need" class="text-white font-semibold flex items-center gap-2 hover:opacity-80 transition-opacity duration-300">
+              <a href="/need" class="text-white font-semibold flex items-center gap-2 hover:text-green-dark hover:scale-110 transition-all duration-300">
                 Conoce más
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7V17"></path>
@@ -115,12 +116,12 @@
       </div>
 
       <!-- Servicios Funerarios -->
-      <div class="relative group cursor-pointer h-[450px]">
+      <div class="relative group cursor-pointer h-[350px] sm:h-[400px] lg:h-[450px] [perspective:1000px]" onclick="window.location.href='/funservices'">
         <div class="relative h-full w-full transition-transform duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
           <!-- Front Side -->
           <div class="absolute inset-0 h-full w-full rounded-md overflow-hidden [backface-visibility:hidden]">
             <img 
-              src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=300&fit=crop&crop=center" 
+              src="/images/home/Servicios Funerarios - card.webp" 
               alt="Servicios Funerarios" 
               class="w-full h-full object-cover"
             />
@@ -128,7 +129,7 @@
             
             <!-- Content overlay -->
             <div class="absolute inset-0 flex flex-col justify-center items-center p-6">
-              <h3 class="text-white text-xl font-bold mb-2">Servicios Funerarios</h3>
+              <h3 class="text-white text-xl lg:text-2xl font-bold mb-2">Servicios Funerarios</h3>
               
               <!-- Green button bottom right with diagonal down-right arrow -->
               <div class="absolute bottom-1 right-1">
@@ -144,7 +145,7 @@
           <!-- Back Side -->
           <div class="absolute inset-0 h-full w-full rounded-md bg-green-primary [backface-visibility:hidden] [transform:rotateY(180deg)] p-8 flex flex-col justify-center">
             <!-- Title and description centered -->
-            <div class="text-left">
+            <div class="text-center">
               <h3 class="text-white text-2xl font-bold mb-4">Servicios Funerarios</h3>
               <p class="text-white text-sm leading-relaxed max-w-xs">
                 Servicios completos de funeral con el máximo respeto, dignidad y cariño para honrar la memoria de sus seres queridos.
@@ -153,7 +154,158 @@
             
             <!-- Button bottom right -->
             <div class="absolute bottom-8 right-8">
-              <a href="/servicios" class="text-white font-semibold flex items-center gap-2 hover:opacity-80 transition-opacity duration-300">
+              <a href="/servicios" class="text-white font-semibold flex items-center gap-2 hover:text-green-dark hover:scale-110 transition-all duration-300">
+                Conoce más
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7V17"></path>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Row 2 -->
+      <!-- Nichos Cremación y Osarios -->
+      <div class="relative group cursor-pointer h-[350px] sm:h-[400px] lg:h-[450px] [perspective:1000px]" onclick="window.location.href='/burning'">
+        <div class="relative h-full w-full transition-transform duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
+          <!-- Front Side -->
+          <div class="absolute inset-0 h-full w-full rounded-md overflow-hidden [backface-visibility:hidden]">
+            <img 
+              src="/images/home/nichos.webp" 
+              alt="Nichos Cremación y Osarios" 
+              class="w-full h-full object-cover"
+            />
+            <div class="absolute inset-0 bg-dark-gray/70"></div>
+            
+            <!-- Content overlay -->
+            <div class="absolute inset-0 flex flex-col justify-center items-center p-6">
+              <h3 class="text-white text-xl lg:text-2xl font-bold mb-2 text-center">Nichos Cremación y<br>Osarios</h3>
+              
+              <!-- Green button bottom right with diagonal down-right arrow -->
+              <div class="absolute bottom-1 right-1">
+                <div class="w-10 h-10 bg-green-primary rounded flex items-center justify-center">
+                  <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7l10 10M17 7v10H7"></path>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Back Side -->
+          <div class="absolute inset-0 h-full w-full rounded-md bg-green-primary [backface-visibility:hidden] [transform:rotateY(180deg)] p-8 flex flex-col justify-center">
+            <!-- Title and description centered -->
+            <div class="text-center">
+              <h3 class="text-white text-2xl font-bold mb-4">Nichos, Cremación y Osarios</h3>
+              <p class="text-white text-sm leading-relaxed max-w-xs">
+                Brindamos alternativas significativas para honrar la memoria. Con respeto y calidad en cada momento importante.
+              </p>
+            </div>
+            
+            <!-- Button bottom right -->
+            <div class="absolute bottom-8 right-8">
+              <a href="/burning" class="text-white font-semibold flex items-center gap-2 hover:text-green-dark hover:scale-110 transition-all duration-300">
+                Conoce más
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7V17"></path>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Lotes -->
+      <div class="relative group cursor-pointer h-[350px] sm:h-[400px] lg:h-[450px] [perspective:1000px]" onclick="window.location.href='/slots'">
+        <div class="relative h-full w-full transition-transform duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
+          <!-- Front Side -->
+          <div class="absolute inset-0 h-full w-full rounded-md overflow-hidden [backface-visibility:hidden]">
+            <img 
+              src="/images/home/Lotes - card.webp" 
+              alt="Lotes" 
+              class="w-full h-full object-cover"
+            />
+            <div class="absolute inset-0 bg-dark-gray/70"></div>
+            
+            <!-- Content overlay -->
+            <div class="absolute inset-0 flex flex-col justify-center items-center p-6">
+              <h3 class="text-white text-xl lg:text-2xl font-bold mb-2">Lotes</h3>
+              
+              <!-- Green button bottom right with diagonal down-right arrow -->
+              <div class="absolute bottom-1 right-1">
+                <div class="w-10 h-10 bg-green-primary rounded flex items-center justify-center">
+                  <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7l10 10M17 7v10H7"></path>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Back Side -->
+          <div class="absolute inset-0 h-full w-full rounded-md bg-green-primary [backface-visibility:hidden] [transform:rotateY(180deg)] p-8 flex flex-col justify-center">
+            <!-- Title and description centered -->
+            <div class="text-center">
+              <h3 class="text-white text-2xl font-bold mb-4">Lotes</h3>
+              <p class="text-white text-sm leading-relaxed max-w-xs">
+                Espacios de paz pensados para que las familias encuentren un descanso digno y lleno de serenidad.
+              </p>
+            </div>
+            
+            <!-- Button bottom right -->
+            <div class="absolute bottom-8 right-8">
+              <a href="/slots" class="text-white font-semibold flex items-center gap-2 hover:text-green-dark hover:scale-110 transition-all duration-300">
+                Conoce más
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7V17"></path>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Servicios Opcionales -->
+      <div class="relative group cursor-pointer h-[350px] sm:h-[400px] lg:h-[450px] [perspective:1000px]" onclick="window.location.href='/optional'">
+        <div class="relative h-full w-full transition-transform duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
+          <!-- Front Side -->
+          <div class="absolute inset-0 h-full w-full rounded-md overflow-hidden [backface-visibility:hidden]">
+            <img 
+              src="/images/home/Descripcion photo.webp" 
+              alt="Servicios Opcionales" 
+              class="w-full h-full object-cover"
+            />
+            <div class="absolute inset-0 bg-dark-gray/70"></div>
+            
+            <!-- Content overlay -->
+            <div class="absolute inset-0 flex flex-col justify-center items-center p-6">
+              <h3 class="text-white text-xl lg:text-2xl font-bold mb-2">Servicios Opcionales</h3>
+              
+              <!-- Green button bottom right with diagonal down-right arrow -->
+              <div class="absolute bottom-1 right-1">
+                <div class="w-10 h-10 bg-green-primary rounded flex items-center justify-center">
+                  <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7l10 10M17 7v10H7"></path>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Back Side -->
+          <div class="absolute inset-0 h-full w-full rounded-md bg-green-primary [backface-visibility:hidden] [transform:rotateY(180deg)] p-8 flex flex-col justify-center">
+            <!-- Title and description centered -->
+            <div class="text-center">
+              <h3 class="text-white text-2xl font-bold mb-4">Servicios Opcionales</h3>
+              <p class="text-white text-sm leading-relaxed max-w-xs">
+                Ponemos a tu disposición servicios complementarios para que los momentos de tranquilidad sean más especiales.
+              </p>
+            </div>
+            
+            <!-- Button bottom right -->
+            <div class="absolute bottom-8 right-8">
+              <a href="/optional" class="text-white font-semibold flex items-center gap-2 hover:text-green-dark hover:scale-110 transition-all duration-300">
                 Conoce más
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7V17"></path>

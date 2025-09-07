@@ -14,8 +14,14 @@
     "@types/react": "^19.1.10",
     "@types/react-dom": "^19.1.7",
     "astro": "^5.13.2",
+    "axios": "^1.11.0",
+    "canvas-confetti": "^1.9.3",
+    "dotenv": "^17.2.1",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "tailwindcss": "^4.1.12"
+  },
+  "devDependencies": {
+    "@types/canvas-confetti": "^1.9.0"
   }
 }

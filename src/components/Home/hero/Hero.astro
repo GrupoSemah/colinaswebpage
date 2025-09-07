@@ -1,49 +1,41 @@
 ---
 ---
 
-<section class="relative bg-green-dark rounded-3xl mx-6 mt-6 overflow-hidden h-[400px] lg:h-[500px]">
-  <!-- Background cemetery image -->
+<section class="relative bg-green-dark rounded-3xl mx-4 sm:mx-6 overflow-hidden h-[calc(100dvh-120px)]">
+  <!-- Background Video -->
   <div class="absolute inset-0">
-    <img 
-      src="https://images.unsplash.com/photo-1544198365-f5d60b6d8190?w=1200&h=500&fit=crop&crop=center" 
-      alt="Vista aérea del cementerio" 
+    <video 
+      autoplay 
+      muted 
+      loop 
+      playsinline
+      preload="metadata"
       class="w-full h-full object-cover"
-    />
-    <div class="absolute inset-0 bg-green-dark/60"></div>
+      poster="/images/home/hero.webp"
+    >
+      <source src="/videos/herovideo1.webm" type="video/webm">
+      <!-- Fallback image for browsers that don't support video -->
+      <img 
+        src="/images/home/hero.webp" 
+        alt="Vista aérea del cementerio Colinas de la Paz"
+        class="w-full h-full object-cover"
+      />
+    </video>
+    <div class="absolute inset-0 bg-black/40"></div>
   </div>
   
   <!-- Content Container -->
-  <div class="relative z-10 h-full flex items-center">
-    <div class="w-full px-6 lg:px-8">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center h-full max-w-6xl mx-auto">
-        <!-- Left Content -->
-        <div class="lg:col-span-7 text-center lg:text-left">
-          <h1 class="text-white text-3xl lg:text-5xl font-bold leading-tight mb-4">
-            Cementerio y funeraria<br class="hidden lg:block">
-            <span class="lg:hidden"> </span>privada en Panamá Oeste
-          </h1>
-          <p class="text-white text-base lg:text-lg leading-relaxed max-w-lg mx-auto lg:mx-0">
-            Vivimos hoy, dejando la tranquilidad para tu<br class="hidden lg:block">
-            <span class="lg:hidden"> </span>familia mañana.
-          </p>
-        </div>
-        
-        <!-- Right Monument -->
-        <div class="lg:col-span-5 flex justify-center lg:justify-end mt-8 lg:mt-0">
-          <div class="relative w-32 h-40">
-            <!-- Monument tower -->
-            <div class="w-16 h-32 bg-stone-400 mx-auto rounded-t-lg relative">
-              <!-- Tower details -->
-              <div class="absolute top-2 left-1/2 transform -translate-x-1/2 w-3 h-3 bg-amber-400 rounded-full"></div>
-              <div class="absolute top-6 left-1/2 transform -translate-x-1/2 w-2 h-4 bg-amber-500"></div>
-            </div>
-            <!-- Base -->
-            <div class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-20 h-8 bg-stone-600 rounded-t-lg"></div>
-            <!-- Ground/platform -->
-            <div class="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-24 h-6 bg-stone-500 rounded-lg"></div>
-          </div>
-        </div>
-      </div>
+  <div class="relative z-10 h-full flex items-center justify-start text-left px-6 md:px-8 lg:pl-16">
+    <div class="w-full max-w-2xl">
+      <h1 class="text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-4 md:mb-6">
+        Cementerio y funeraria
+        <br class="hidden sm:block">
+        <span class="sm:hidden"> </span>privada en Panamá Oeste
+      </h1>
+      <p class="text-white text-base sm:text-lg md:text-xl leading-relaxed">
+        Invierte hoy, asegura tu tranquilidad para tu familia mañana.
+      </p>
     </div>
   </div>
 </section>
+

@@ -7,9 +7,14 @@ import react from '@astrojs/react';
 
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://colinasdelapaz.com',
+  output: 'static',
   vite: {
     plugins: [tailwindcss()]
   },
-
-  integrations: [react()]
+  integrations: [react()],
+  compressHTML: true,
+  build: {
+    inlineStylesheets: 'auto'
+  }
 });

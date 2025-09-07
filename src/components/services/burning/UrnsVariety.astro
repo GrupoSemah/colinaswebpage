@@ -1,0 +1,198 @@
+---
+---
+
+<section class="py-16">
+  <div class="container mx-auto px-4 max-w-6xl">
+    <div class="text-center mb-12">
+      <h2 class="text-4xl font-bold text-dark-gray mb-4">
+        Variedad de urnas para elegir
+      </h2>
+    </div>
+    
+    <div class="grid lg:grid-cols-2 gap-16 items-start">
+      <!-- Imagen de urna con controles -->
+      <div class="relative flex flex-col items-center">
+        <div class="mb-8 w-64 h-64 overflow-hidden">
+          <div class="flex transition-transform duration-500 ease-in-out" id="urnsCarouselTrack">
+            <div class="w-64 flex-shrink-0 flex justify-center">
+              <img 
+                src="/images/burning/Swipe1.webp" 
+                alt="Urna para cremación 1" 
+                class="w-64 h-auto object-contain"
+              />
+            </div>
+            <div class="w-64 flex-shrink-0 flex justify-center">
+              <img 
+                src="/images/burning/Swipe2.webp" 
+                alt="Urna para cremación 2" 
+                class="w-64 h-auto object-contain"
+              />
+            </div>
+            <div class="w-64 flex-shrink-0 flex justify-center">
+              <img 
+                src="/images/burning/Swipe3.webp" 
+                alt="Urna para cremación 3" 
+                class="w-64 h-auto object-contain"
+              />
+            </div>
+            <div class="w-64 flex-shrink-0 flex justify-center">
+              <img 
+                src="/images/burning/Swipe4.webp" 
+                alt="Urna para cremación 4" 
+                class="w-64 h-auto object-contain"
+              />
+            </div>
+          </div>
+        </div>
+        
+        <!-- Controles de navegación -->
+        <div class="flex items-center space-x-4">
+          <button 
+            id="urnsPrevBtn" 
+            class="w-12 h-12 rounded-full flex items-center justify-center transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            disabled
+          >
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+            </svg>
+          </button>
+          
+          <button 
+            id="urnsNextBtn" 
+            class="w-12 h-12 rounded-full flex items-center justify-center transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+      
+      <!-- Contenido de servicios -->
+      <div class="space-y-6 flex flex-col items-center lg:items-start text-center lg:text-left">
+        <h3 class="text-xl font-semibold text-dark-gray mb-6">
+          El servicio de cremación incluye:
+        </h3>
+        
+        <!-- Lista en dos columnas -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-y-4 gap-x-8 justify-items-start w-fit mx-auto lg:mx-0">
+          <div class="flex items-center space-x-3">
+            <div class="w-2 h-2 bg-green-primary rounded-full flex-shrink-0"></div>
+            <span class="text-base text-dark-gray">Cremación de restos</span>
+          </div>
+          
+          <div class="flex items-center space-x-3">
+            <div class="w-2 h-2 bg-green-primary rounded-full flex-shrink-0"></div>
+            <span class="text-base text-dark-gray">Arreglo floral</span>
+          </div>
+          
+          <div class="flex items-center space-x-3">
+            <div class="w-2 h-2 bg-green-primary rounded-full flex-shrink-0"></div>
+            <span class="text-base text-dark-gray">Ceremonia religiosa</span>
+          </div>
+          
+          <div class="flex items-center space-x-3">
+            <div class="w-2 h-2 bg-green-primary rounded-full flex-shrink-0"></div>
+            <span class="text-base text-dark-gray">Tarjeta de condolencias</span>
+          </div>
+          
+          <div class="flex items-center space-x-3">
+            <div class="w-2 h-2 bg-green-primary rounded-full flex-shrink-0"></div>
+            <span class="text-base text-dark-gray">Traslado del difunto</span>
+          </div>
+          
+          <div class="flex items-center space-x-3">
+            <div class="w-2 h-2 bg-green-primary rounded-full flex-shrink-0"></div>
+            <span class="text-base text-dark-gray">Libro de firmas</span>
+          </div>
+          
+          <div class="flex items-center space-x-3">
+            <div class="w-2 h-2 bg-green-primary rounded-full flex-shrink-0"></div>
+            <span class="text-base text-dark-gray">Trámites legales</span>
+          </div>
+          
+          <div class="flex items-center space-x-3">
+            <div class="w-2 h-2 bg-green-primary rounded-full flex-shrink-0"></div>
+            <span class="text-base text-dark-gray">Morgue privada 24hrs</span>
+          </div>
+          
+          <div class="flex items-center space-x-3 md:col-span-2">
+            <div class="w-2 h-2 bg-green-primary rounded-full flex-shrink-0"></div>
+            <span class="text-base text-dark-gray">Urna básica / otras</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Urns Carousel functionality
+  let currentUrnsSlide = 0;
+  const totalUrnsSlides = 4;
+  
+  const urnsTrack = document.getElementById('urnsCarouselTrack');
+  const urnsPrevBtn = document.getElementById('urnsPrevBtn');
+  const urnsNextBtn = document.getElementById('urnsNextBtn');
+  
+  function updateUrnsCarousel() {
+    if (urnsTrack) {
+      urnsTrack.style.transform = `translateX(-${currentUrnsSlide * 256}px)`; // 256px = w-64
+    }
+    
+    // Update button states
+    updateButtonStates();
+  }
+  
+  function updateButtonStates() {
+    if (!urnsPrevBtn || !urnsNextBtn) return;
+    
+    // Previous button - disabled at start
+    if (currentUrnsSlide === 0) {
+      (urnsPrevBtn as HTMLButtonElement).disabled = true;
+      urnsPrevBtn.classList.remove('bg-green-primary', 'hover:bg-green-dark', 'text-white');
+      urnsPrevBtn.classList.add('bg-light-gray', 'text-dark-gray');
+    } else {
+      (urnsPrevBtn as HTMLButtonElement).disabled = false;
+      urnsPrevBtn.classList.remove('bg-light-gray', 'text-dark-gray');
+      urnsPrevBtn.classList.add('bg-green-primary', 'hover:bg-green-dark', 'text-white');
+    }
+    
+    // Next button - disabled at end
+    if (currentUrnsSlide === totalUrnsSlides - 1) {
+      (urnsNextBtn as HTMLButtonElement).disabled = true;
+      urnsNextBtn.classList.remove('bg-green-primary', 'hover:bg-green-dark', 'text-white');
+      urnsNextBtn.classList.add('bg-light-gray', 'text-dark-gray');
+    } else {
+      (urnsNextBtn as HTMLButtonElement).disabled = false;
+      urnsNextBtn.classList.remove('bg-light-gray', 'text-dark-gray');
+      urnsNextBtn.classList.add('bg-green-primary', 'hover:bg-green-dark', 'text-white');
+    }
+  }
+  
+  function nextUrnsSlide() {
+    if (currentUrnsSlide < totalUrnsSlides - 1) {
+      currentUrnsSlide++;
+      updateUrnsCarousel();
+    }
+  }
+  
+  function prevUrnsSlide() {
+    if (currentUrnsSlide > 0) {
+      currentUrnsSlide--;
+      updateUrnsCarousel();
+    }
+  }
+  
+  // Event listeners
+  if (urnsNextBtn) {
+    urnsNextBtn.addEventListener('click', nextUrnsSlide);
+  }
+  
+  if (urnsPrevBtn) {
+    urnsPrevBtn.addEventListener('click', prevUrnsSlide);
+  }
+  
+  // Initialize button states
+  updateButtonStates();
+</script>
