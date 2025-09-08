@@ -1,0 +1,19 @@
+---
+export const prerender = true;
+
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/need/Hero.astro';
+import Description from '../components/need/Description.astro';
+import Services from '../components/need/Services.astro';
+import CTA from '../components/need/CTA.astro';
+---
+
+<Layout 
+  title="Necesidad Inmediata - Colinas de la Paz | Servicios Funerarios Urgentes"
+  description="Servicios funerarios de necesidad inmediata en Colinas de la Paz. Atención 24/7, lotes, nichos, cremaciones y servicios completos para momentos difíciles en Panamá Oeste."
+>
+  <Hero />
+  <Description />
+  <Services />
+  <CTA />
+</Layout>
