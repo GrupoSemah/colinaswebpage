@@ -18,7 +18,16 @@ function getServiceEnumId(servicio) {
 }
 
 export async function POST({ request }) {
+  console.log('=== INICIO API CONTACT ===');
+  
   try {
+    // Log del entorno de ejecución
+    console.log('Environment:', {
+      isVercel: !!process.env.VERCEL,
+      nodeEnv: process.env.NODE_ENV,
+      platform: process.platform
+    });
+    
     // Verificar variables de entorno
     const requiredEnvVars = [
       'KOMMO_SUBDOMAIN',
@@ -32,6 +41,16 @@ export async function POST({ request }) {
       'KOMMO_FUENTE_LEAD_ENUM_ID'
     ];
 
+    console.log('Verificando variables de entorno...');
+    const envStatus = {};
+    requiredEnvVars.forEach(varName => {
+      envStatus[varName] = {
+        exists: !!import.meta.env[varName],
+        length: import.meta.env[varName] ? import.meta.env[varName].length : 0
+      };
+    });
+    console.log('Estado de variables:', envStatus);
+    
     const missingVars = requiredEnvVars.filter(varName => !import.meta.env[varName]);
     
     if (missingVars.length > 0) {
@@ -39,14 +58,22 @@ export async function POST({ request }) {
       return new Response(JSON.stringify({ 
         success: false, 
         error: 'Configuración del servidor incompleta',
-        missingVars: missingVars
+        missingVars: missingVars,
+        envStatus: envStatus
       }), {
         status: 500,
         headers: { 'Content-Type': 'application/json' }
       });
     }
 
+    console.log('Parseando datos del formulario...');
     const formData = await request.json();
+    console.log('Datos recibidos:', {
+      nombre: formData.nombre ? 'OK' : 'MISSING',
+      telefono: formData.telefono ? 'OK' : 'MISSING',
+      email: formData.email ? 'OK' : 'MISSING',
+      servicio: formData.servicio ? 'OK' : 'MISSING'
+    });
     
     const incomingLeadData = [{
       source_name: "Formulario Web Colinas de la Paz",
@@ -94,16 +121,30 @@ export async function POST({ request }) {
       }
     }];
 
+    const kommoUrl = `https://${import.meta.env.KOMMO_SUBDOMAIN}.kommo.com/api/v4/leads/unsorted/forms`;
+    console.log('Enviando a Kommo:', {
+      url: kommoUrl,
+      dataSize: JSON.stringify(incomingLeadData).length,
+      hasAuth: !!import.meta.env.KOMMO_ACCESS_TOKEN
+    });
+    
     const response = await axios.post(
-      `https://${import.meta.env.KOMMO_SUBDOMAIN}.kommo.com/api/v4/leads/unsorted/forms`,
+      kommoUrl,
       incomingLeadData,
       {
         headers: {
           'Authorization': `Bearer ${import.meta.env.KOMMO_ACCESS_TOKEN}`,
           'Content-Type': 'application/json'
-        }
+        },
+        timeout: 10000 // 10 segundos timeout
       }
     );
+    
+    console.log('Respuesta de Kommo:', {
+      status: response.status,
+      statusText: response.statusText,
+      dataKeys: Object.keys(response.data || {})
+    });
 
     // Manejar diferentes estructuras de respuesta
     let leadId = null;
@@ -123,23 +164,68 @@ export async function POST({ request }) {
     });
 
   } catch (error) {
-    console.error('Error en API de contacto:', error);
+    console.error('=== ERROR EN API CONTACT ===');
+    console.error('Error completo:', {
+      message: error.message,
+      stack: error.stack,
+      name: error.name,
+      code: error.code
+    });
     
     // Proporcionar más detalles del error
     let errorMessage = 'Error al enviar el formulario';
+    let errorDetails = {
+      type: 'unknown',
+      message: error.message
+    };
+    
     if (error.response) {
+      console.error('Error de respuesta HTTP:', {
+        status: error.response.status,
+        statusText: error.response.statusText,
+        data: error.response.data,
+        headers: error.response.headers
+      });
       errorMessage = `Error ${error.response.status}: ${error.response.statusText}`;
+      errorDetails = {
+        type: 'http_response',
+        status: error.response.status,
+        statusText: error.response.statusText,
+        data: error.response.data
+      };
     } else if (error.request) {
-      errorMessage = 'Error de conexión con el servidor';
+      console.error('Error de request:', error.request);
+      errorMessage = 'Error de conexión con Kommo';
+      errorDetails = {
+        type: 'network',
+        message: 'No se pudo conectar con Kommo'
+      };
+    } else if (error.code === 'ENOTFOUND') {
+      errorMessage = 'Error de DNS - no se pudo resolver el dominio';
+      errorDetails = {
+        type: 'dns',
+        message: error.message
+      };
+    } else if (error.code === 'ETIMEDOUT') {
+      errorMessage = 'Timeout - la solicitud tardó demasiado';
+      errorDetails = {
+        type: 'timeout',
+        message: error.message
+      };
     }
+    
+    console.error('Enviando respuesta de error:', { errorMessage, errorDetails });
     
     return new Response(JSON.stringify({ 
       success: false, 
       error: errorMessage,
-      details: error.message
+      details: errorDetails,
+      timestamp: new Date().toISOString()
     }), {
       status: 500,
       headers: { 'Content-Type': 'application/json' }
     });
   }
+  
+  console.log('=== FIN API CONTACT ===');
 }
