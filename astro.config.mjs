@@ -15,8 +15,5 @@ export default defineConfig({
     plugins: [tailwindcss()]
   },
   integrations: [react()],
-  compressHTML: true,
-  build: {
-    inlineStylesheets: 'auto'
-  }
+  compressHTML: true
 });
