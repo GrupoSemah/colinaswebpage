@@ -1,108 +1,128 @@
 const CACHE_NAME = 'colinas-v1';
-const STATIC_CACHE = 'colinas-static-v1';
-
-// Assets to cache immediately
-const STATIC_ASSETS = [
+const urlsToCache = [
   '/',
-  '/manifest.json',
+  '/contact',
+  '/aboutus',
+  '/faq',
+  '/funservices',
+  '/burning',
+  '/optional',
+  '/ponline',
+  '/preneed',
+  '/necesidad-inmediata',
   '/fonts/Gilroy-Light.woff',
   '/fonts/Gilroy-Extrabold.woff',
   '/images/logo.webp',
-  '/og-image.webp'
+  '/favicon.svg',
+  '/styles/global.css'
 ];
 
-// Install event - cache static assets
+// Install event
 self.addEventListener('install', (event) => {
   event.waitUntil(
-    caches.open(STATIC_CACHE)
-      .then((cache) => cache.addAll(STATIC_ASSETS))
-      .then(() => self.skipWaiting())
+    caches.open(CACHE_NAME)
+      .then((cache) => {
+        return cache.addAll(urlsToCache.map(url => new Request(url, {cache: 'reload'})));
+      })
+      .catch((error) => {
+        console.log('Cache install failed:', error);
+      })
   );
+  self.skipWaiting();
 });
 
-// Activate event - clean old caches
+// Activate event
 self.addEventListener('activate', (event) => {
   event.waitUntil(
     caches.keys().then((cacheNames) => {
       return Promise.all(
         cacheNames.map((cacheName) => {
-          if (cacheName !== CACHE_NAME && cacheName !== STATIC_CACHE) {
+          if (cacheName !== CACHE_NAME) {
             return caches.delete(cacheName);
           }
         })
       );
-    }).then(() => self.clients.claim())
+    })
   );
+  self.clients.claim();
 });
 
-// Fetch event - cache strategy
+// Fetch event
 self.addEventListener('fetch', (event) => {
   const { request } = event;
   const url = new URL(request.url);
-
+  
   // Skip non-GET requests
-  if (request.method !== 'GET') return;
-
-  // Skip external requests
-  if (url.origin !== location.origin) return;
-
-  // Cache strategy based on request type
-  if (isStaticAsset(request)) {
-    // Cache First for static assets
+  if (request.method !== 'GET') {
+    return;
+  }
+  
+  // Skip external requests and Vercel analytics
+  if (url.origin !== location.origin || url.pathname.includes('_vercel')) {
+    return;
+  }
+  
+  // Skip API requests
+  if (url.pathname.startsWith('/api/')) {
+    return;
+  }
+  
+  // Use cache first for static assets
+  if (url.pathname.match(/\.(js|css|png|jpg|jpeg|gif|webp|svg|woff|woff2|ico)$/)) {
     event.respondWith(cacheFirst(request));
-  } else if (isHTMLRequest(request)) {
-    // Network First for HTML pages
+  } else {
+    // Use network first for pages
     event.respondWith(networkFirst(request));
   }
 });
 
-// Check if request is for static asset
-function isStaticAsset(request) {
-  const url = new URL(request.url);
-  return url.pathname.match(/\.(css|js|woff|woff2|ttf|webp|png|jpg|svg|mp4|webm)$/);
-}
-
-// Check if request is for HTML
-function isHTMLRequest(request) {
-  return request.headers.get('accept')?.includes('text/html');
-}
-
 // Cache First strategy
 async function cacheFirst(request) {
-  const cache = await caches.open(CACHE_NAME);
-  const cached = await cache.match(request);
-  
-  if (cached) {
-    return cached;
-  }
-  
   try {
+    const cache = await caches.open(CACHE_NAME);
+    const cached = await cache.match(request);
+    
+    if (cached) {
+      return cached;
+    }
+    
     const response = await fetch(request);
-    if (response.ok) {
+    if (response.ok && response.status < 400) {
       cache.put(request, response.clone());
     }
     return response;
   } catch (error) {
-    console.log('Cache First failed:', error);
-    return new Response('Offline', { status: 503 });
+    console.log('Cache First failed for:', request.url, error);
+    // Return a basic offline response for failed requests
+    return new Response('Resource not available offline', { 
+      status: 503,
+      statusText: 'Service Unavailable',
+      headers: { 'Content-Type': 'text/plain' }
+    });
   }
 }
 
 // Network First strategy
 async function networkFirst(request) {
-  const cache = await caches.open(CACHE_NAME);
-  
   try {
     const response = await fetch(request);
-    if (response.ok) {
+    if (response.ok && response.status < 400) {
+      const cache = await caches.open(CACHE_NAME);
       cache.put(request, response.clone());
     }
     return response;
   } catch (error) {
+    console.log('Network First failed for:', request.url, error);
+    const cache = await caches.open(CACHE_NAME);
     const cached = await cache.match(request);
     if (cached) {
       return cached;
     }
-    return new Response('Offline', { status: 503 });
+    // Return a basic offline page
+    return new Response('Page not available offline', { 
+      status: 503,
+      statusText: 'Service Unavailable',
+      headers: { 'Content-Type': 'text/plain' }
+    });
   }
 }

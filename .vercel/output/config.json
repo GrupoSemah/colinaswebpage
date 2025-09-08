@@ -40,10 +40,6 @@
 			"dest": "_render"
 		},
 		{
-			"src": "^/need/?$",
-			"dest": "_render"
-		},
-		{
 			"src": "^/optional/?$",
 			"dest": "_render"
 		},

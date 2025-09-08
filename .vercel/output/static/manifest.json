@@ -11,10 +11,10 @@
   "lang": "es",
   "icons": [
     {
-      "src": "/images/logo.webp",
+      "src": "/favicon.svg",
       "sizes": "any",
-      "type": "image/webp",
-      "purpose": "any"
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
     }
   ],
   "categories": ["business", "lifestyle"],
