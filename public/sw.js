@@ -87,7 +87,7 @@ async function cacheFirst(request) {
     }
     
     const response = await fetch(request);
-    if (response.ok && response.status < 400) {
+    if (response.ok && response.status < 400 && response.status !== 206) {
       cache.put(request, response.clone());
     }
     return response;
@@ -106,7 +106,7 @@ async function cacheFirst(request) {
 async function networkFirst(request) {
   try {
     const response = await fetch(request);
-    if (response.ok && response.status < 400) {
+    if (response.ok && response.status < 400 && response.status !== 206) {
       const cache = await caches.open(CACHE_NAME);
       cache.put(request, response.clone());
     }
