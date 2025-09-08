@@ -1,6 +1,6 @@
 import { renderers } from './renderers.mjs';
 import { c as createExports, s as serverEntrypointModule } from './chunks/_@astrojs-ssr-adapter_DShy0iUI.mjs';
-import { manifest } from './manifest_DJaykOEy.mjs';
+import { manifest } from './manifest_BsEgltPs.mjs';
 
 const serverIslandMap = new Map();;
 
@@ -11,7 +11,7 @@ const _page3 = () => import('./pages/burning.astro.mjs');
 const _page4 = () => import('./pages/contact.astro.mjs');
 const _page5 = () => import('./pages/faq.astro.mjs');
 const _page6 = () => import('./pages/funservices.astro.mjs');
-const _page7 = () => import('./pages/need.astro.mjs');
+const _page7 = () => import('./pages/necesidad-inmediata.astro.mjs');
 const _page8 = () => import('./pages/optional.astro.mjs');
 const _page9 = () => import('./pages/ponline.astro.mjs');
 const _page10 = () => import('./pages/preneed.astro.mjs');
@@ -26,7 +26,7 @@ const pageMap = new Map([
     ["src/pages/contact.astro", _page4],
     ["src/pages/faq.astro", _page5],
     ["src/pages/funservices.astro", _page6],
-    ["src/pages/need.astro", _page7],
+    ["src/pages/necesidad-inmediata.astro", _page7],
     ["src/pages/optional.astro", _page8],
     ["src/pages/ponline.astro", _page9],
     ["src/pages/preneed.astro", _page10],
@@ -43,7 +43,7 @@ const _manifest = Object.assign(manifest, {
     middleware: () => import('./_noop-middleware.mjs')
 });
 const _args = {
-    "middlewareSecret": "983ba812-75ed-4487-bba9-4fccfbc180cd",
+    "middlewareSecret": "05d2b059-6be1-4c9d-ab7a-288cd858c1d1",
     "skewProtection": false
 };
 const _exports = createExports(_manifest, _args);
