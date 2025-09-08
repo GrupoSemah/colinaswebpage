@@ -1,10 +1,15 @@
 ---
+export const prerender = true;
+
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/ponline/Hero.astro';
 import PaymentMethods from '../components/ponline/PaymentMethods.astro';
 ---
 
-<Layout title="Pagos en Línea - Colinas de la Paz">
+<Layout 
+  title="Pagos en Línea - Colinas de la Paz | Pagos Seguros"
+  description="Realiza pagos en línea de forma segura en Colinas de la Paz. Múltiples métodos de pago disponibles para servicios funerarios y mantenimiento de lotes."
+>
   <Hero />
   <PaymentMethods />
 </Layout>
