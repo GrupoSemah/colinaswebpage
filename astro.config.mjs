@@ -2,14 +2,15 @@
 import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 import react from '@astrojs/react';
-import vercel from '@astrojs/vercel';
+import vercel from '@astrojs/vercel/serverless';
 
 // https://astro.build/config
 export default defineConfig({
   site: 'https://colinasdelapaz.com',
   output: 'server',
   adapter: vercel({
-    webAnalytics: { enabled: false }
+    webAnalytics: { enabled: false },
+    includeFiles: ['./src/pages/api/**/*']
   }),
   vite: {
     plugins: [tailwindcss()]
