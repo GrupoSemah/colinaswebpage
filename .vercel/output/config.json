@@ -20,43 +20,11 @@
 			"dest": "_render"
 		},
 		{
-			"src": "^/aboutus/?$",
-			"dest": "_render"
-		},
-		{
 			"src": "^/api/contact/?$",
 			"dest": "_render"
 		},
 		{
-			"src": "^/burning/?$",
-			"dest": "_render"
-		},
-		{
-			"src": "^/faq/?$",
-			"dest": "_render"
-		},
-		{
-			"src": "^/funservices/?$",
-			"dest": "_render"
-		},
-		{
-			"src": "^/optional/?$",
-			"dest": "_render"
-		},
-		{
-			"src": "^/ponline/?$",
-			"dest": "_render"
-		},
-		{
-			"src": "^/preneed/?$",
-			"dest": "_render"
-		},
-		{
 			"src": "^/sitemap\\.xml/?$",
-			"dest": "_render"
-		},
-		{
-			"src": "^/slots/?$",
 			"dest": "_render"
 		}
 	]
