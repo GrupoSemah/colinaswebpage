@@ -17,8 +17,16 @@ function getServiceEnumId(servicio) {
   return serviceMap[servicio] || 971950; // Default: "Pendiente"
 }
 
-export async function POST({ request }) {
-  console.log('=== INICIO API CONTACT ===');
+export default async function handler(request, response) {
+  console.log('=== INICIO API CONTACT VERCEL FUNCTION ===');
+  
+  // Only allow POST method
+  if (request.method !== 'POST') {
+    return response.status(405).json({ 
+      success: false, 
+      error: 'Method not allowed' 
+    });
+  }
   
   try {
     // Log del entorno de ejecución
@@ -45,29 +53,26 @@ export async function POST({ request }) {
     const envStatus = {};
     requiredEnvVars.forEach(varName => {
       envStatus[varName] = {
-        exists: !!import.meta.env[varName],
-        length: import.meta.env[varName] ? import.meta.env[varName].length : 0
+        exists: !!process.env[varName],
+        length: process.env[varName] ? process.env[varName].length : 0
       };
     });
     console.log('Estado de variables:', envStatus);
     
-    const missingVars = requiredEnvVars.filter(varName => !import.meta.env[varName]);
+    const missingVars = requiredEnvVars.filter(varName => !process.env[varName]);
     
     if (missingVars.length > 0) {
       console.error('Variables de entorno faltantes:', missingVars);
-      return new Response(JSON.stringify({ 
+      return response.status(500).json({ 
         success: false, 
         error: 'Configuración del servidor incompleta',
         missingVars: missingVars,
         envStatus: envStatus
-      }), {
-        status: 500,
-        headers: { 'Content-Type': 'application/json' }
       });
     }
 
     console.log('Parseando datos del formulario...');
-    const formData = await request.json();
+    const formData = request.body;
     console.log('Datos recibidos:', {
       nombre: formData.nombre ? 'OK' : 'MISSING',
       telefono: formData.telefono ? 'OK' : 'MISSING',
@@ -79,13 +84,13 @@ export async function POST({ request }) {
       source_name: "Formulario Web Colinas de la Paz",
       source_uid: `web_form_${Date.now()}_${Math.random().toString(36).substring(2, 11)}`,
       created_at: Math.floor(Date.now() / 1000),
-      pipeline_id: parseInt(import.meta.env.KOMMO_PIPELINE_ID),
+      pipeline_id: parseInt(process.env.KOMMO_PIPELINE_ID),
       metadata: {
         category: "forms",
         form_id: "contact_form_colinas",
         form_name: "Formulario de Contacto",
         form_page: "https://colinasdelapaz.com/contact",
-        ip: request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip') || '127.0.0.1',
+        ip: request.headers['x-forwarded-for'] || request.headers['x-real-ip'] || '127.0.0.1',
         form_sent_at: Math.floor(Date.now() / 1000)
       },
       _embedded: {
@@ -93,11 +98,11 @@ export async function POST({ request }) {
           name: formData.nombre,
           custom_fields_values: [
             {
-              field_id: parseInt(import.meta.env.KOMMO_EMAIL_FIELD_ID),
+              field_id: parseInt(process.env.KOMMO_EMAIL_FIELD_ID),
               values: [{ value: formData.email }]
             },
             {
-              field_id: parseInt(import.meta.env.KOMMO_PHONE_FIELD_ID),
+              field_id: parseInt(process.env.KOMMO_PHONE_FIELD_ID),
               values: [{ value: formData.telefono }]
             }
           ]
@@ -105,35 +110,35 @@ export async function POST({ request }) {
         leads: [{
           name: `Solicitud WEB - ${formData.nombre}`,
           price: 0,
-          pipeline_id: parseInt(import.meta.env.KOMMO_PIPELINE_ID),
-          responsible_user_id: parseInt(import.meta.env.KOMMO_USER_ID),
+          pipeline_id: parseInt(process.env.KOMMO_PIPELINE_ID),
+          responsible_user_id: parseInt(process.env.KOMMO_USER_ID),
           custom_fields_values: [
             {
-              field_id: parseInt(import.meta.env.KOMMO_SERVICE_FIELD_ID),
+              field_id: parseInt(process.env.KOMMO_SERVICE_FIELD_ID),
               values: [{ enum_id: getServiceEnumId(formData.servicio) }]
             },
             {
-              field_id: parseInt(import.meta.env.KOMMO_FUENTE_LEAD_ID),
-              values: [{ enum_id: parseInt(import.meta.env.KOMMO_FUENTE_LEAD_ENUM_ID) }]
+              field_id: parseInt(process.env.KOMMO_FUENTE_LEAD_ID),
+              values: [{ enum_id: parseInt(process.env.KOMMO_FUENTE_LEAD_ENUM_ID) }]
             }
           ]
         }]
       }
     }];
 
-    const kommoUrl = `https://${import.meta.env.KOMMO_SUBDOMAIN}.kommo.com/api/v4/leads/unsorted/forms`;
+    const kommoUrl = `https://${process.env.KOMMO_SUBDOMAIN}.kommo.com/api/v4/leads/unsorted/forms`;
     console.log('Enviando a Kommo:', {
       url: kommoUrl,
       dataSize: JSON.stringify(incomingLeadData).length,
-      hasAuth: !!import.meta.env.KOMMO_ACCESS_TOKEN
+      hasAuth: !!process.env.KOMMO_ACCESS_TOKEN
     });
     
-    const response = await axios.post(
+    const axiosResponse = await axios.post(
       kommoUrl,
       incomingLeadData,
       {
         headers: {
-          'Authorization': `Bearer ${import.meta.env.KOMMO_ACCESS_TOKEN}`,
+          'Authorization': `Bearer ${process.env.KOMMO_ACCESS_TOKEN}`,
           'Content-Type': 'application/json'
         },
         timeout: 10000 // 10 segundos timeout
@@ -141,26 +146,23 @@ export async function POST({ request }) {
     );
     
     console.log('Respuesta de Kommo:', {
-      status: response.status,
-      statusText: response.statusText,
-      dataKeys: Object.keys(response.data || {})
+      status: axiosResponse.status,
+      statusText: axiosResponse.statusText,
+      dataKeys: Object.keys(axiosResponse.data || {})
     });
 
     // Manejar diferentes estructuras de respuesta
     let leadId = null;
-    if (response.data && Array.isArray(response.data) && response.data.length > 0) {
-      leadId = response.data[0].id;
-    } else if (response.data && response.data._embedded && response.data._embedded.leads) {
-      leadId = response.data._embedded.leads[0].id;
+    if (axiosResponse.data && Array.isArray(axiosResponse.data) && axiosResponse.data.length > 0) {
+      leadId = axiosResponse.data[0].id;
+    } else if (axiosResponse.data && axiosResponse.data._embedded && axiosResponse.data._embedded.leads) {
+      leadId = axiosResponse.data._embedded.leads[0].id;
     }
     
-    return new Response(JSON.stringify({ 
+    return response.status(200).json({ 
       success: true, 
       leadId: leadId,
       message: 'Lead creado exitosamente en Kommo'
-    }), {
-      status: 200,
-      headers: { 'Content-Type': 'application/json' }
     });
 
   } catch (error) {
@@ -216,16 +218,11 @@ export async function POST({ request }) {
     
     console.error('Enviando respuesta de error:', { errorMessage, errorDetails });
     
-    return new Response(JSON.stringify({ 
+    return response.status(500).json({ 
       success: false, 
       error: errorMessage,
       details: errorDetails,
       timestamp: new Date().toISOString()
-    }), {
-      status: 500,
-      headers: { 'Content-Type': 'application/json' }
     });
   }
-  
-  console.log('=== FIN API CONTACT ===');
 }

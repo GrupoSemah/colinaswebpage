@@ -9,8 +9,7 @@ export default defineConfig({
   site: 'https://colinasdelapaz.com',
   output: 'server',
   adapter: vercel({
-    webAnalytics: { enabled: false },
-    includeFiles: ['./src/pages/api/**/*']
+    webAnalytics: { enabled: false }
   }),
   vite: {
     plugins: [tailwindcss()]
