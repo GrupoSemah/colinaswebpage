@@ -21,8 +21,11 @@ const { titleText, description, buttonText, buttonHref = "/contact" } = Astro.pr
         </p>
       </div>
       <div>
-        <a href={buttonHref} class="text-dark-gray font-medium px-4 md:px-6 py-2 md:py-3 rounded-lg border border-dark-gray shadow-sm hover:shadow-md hover:bg-gray-50 transition-all duration-300 inline-block text-sm md:text-base">
+        <a href={buttonHref} class="text-dark-gray font-medium px-4 md:px-6 py-2 md:py-3 rounded-lg border border-dark-gray shadow-sm hover:shadow-md hover:bg-green-dark hover:text-white transition-all duration-300 inline-flex items-center gap-2 group text-sm md:text-base">
           {buttonText}
+          <svg class="w-4 md:w-5 h-4 md:h-5 transition-transform duration-300 group-hover:-rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7L17 17M17 17H7M17 17V7"></path>
+          </svg>
         </a>
       </div>
     </div>

@@ -12,15 +12,69 @@
       
       <!-- Payment Methods Buttons -->
       <div class="flex flex-wrap justify-center text-2xl gap-12 mt-12 mb-16">
-        <button class="px-20 py-3 border-2 border-green-dark text-green-dark rounded-xl font-bold hover:bg-green-dark hover:text-white transition-all duration-300">
+        <button id="ach-btn" class="payment-btn px-20 py-3 border-2 border-green-dark text-green-dark rounded-xl font-bold hover:bg-green-dark hover:text-white transition-all duration-300">
           ACH
         </button>
-        <button class="px-20 py-3 border-2 border-green-dark text-green-dark rounded-xl font-bold hover:bg-green-dark hover:text-white transition-all duration-300">
+        <button id="yappy-btn" class="payment-btn px-20 py-3 border-2 border-green-dark text-green-dark rounded-xl font-bold hover:bg-green-dark hover:text-white transition-all duration-300">
           Yappy
         </button>
-        <button class="px-20 py-3 border-2 border-green-dark text-green-dark rounded-xl font-bold hover:bg-green-dark hover:text-white transition-all duration-300">
+        <button id="descuento-btn" class="payment-btn px-20 py-3 border-2 border-green-dark text-green-dark rounded-xl font-bold hover:bg-green-dark hover:text-white transition-all duration-300">
           Descuento directo
         </button>
+      </div>
+
+      <!-- Payment Information Cards -->
+      <div id="payment-info" class="hidden mb-16">
+        <!-- ACH Card -->
+        <div id="ach-card" class="payment-card hidden rounded-2xl p-8 text-left" style="background-color: #ecfdd2;">
+          <p class="text-green-dark/80 mb-6">
+            Realizar una transferencia bancaria a nuestra cuenta en Banco General
+          </p>
+          
+          <div class="space-y-1 text-green-dark font-bold mb-6">
+            <p class="text-green-dark font-bold text-lg">Inversiones Funerarias Panamá 1, S.A.</p>
+            <p class="text-green-dark font-bold">Número de cuenta:</p>
+            <p class="text-green-dark font-bold text-xl">03-72-01-122214-0</p>
+            <p class="text-green-dark font-bold">Cuenta Corriente</p>
+          </div>
+
+          <p class="text-green-dark font-bold">
+            Una vez realizado tu pago, envíanos copia del comprobante al correo: kortega@colinasdelapaz.com o al Whatsapp 6611-3850 con su nombre y número de contrato.
+          </p>
+        </div>
+
+        <!-- Yappy Card -->
+        <div id="yappy-card" class="payment-card hidden rounded-2xl p-8 text-left" style="background-color: #ecfdd2;">
+          <p class="text-green-dark/80 mb-6">
+            Puedes utilizar la app Yappy de Banco General para realizar tus pagos.
+          </p>
+          
+          <div class="space-y-2 text-green-dark font-bold mb-6">
+            <p class="text-green-dark font-bold">1. En Yappy presiona Enviar.</p>
+            <p class="text-green-dark font-bold">2. Presiona la pestaña de Directorio.</p>
+            <p class="text-green-dark font-bold">3. En el buscador escribe: colinasdelapaz</p>
+            <p class="text-green-dark font-bold">4. Coloca el monto a pagar y si deseas, agrega un comentario.</p>
+            <p class="text-green-dark font-bold">5. Confirma los datos y presiona Sí, enviar.</p>
+          </div>
+
+          <p class="text-green-dark font-bold">
+            Una vez realizado tu pago, envíanos copia del comprobante al correo: kortega@colinasdelapaz.com o al Whatsapp 6611-3850 con su nombre y número de contrato.
+          </p>
+        </div>
+
+        <!-- Descuento Directo Card -->
+        <div id="descuento-card" class="payment-card hidden rounded-2xl p-8 text-left" style="background-color: #ecfdd2;">
+          <p class="text-green-dark/80 mb-4">
+            Puede autorizar a Colinas de la Paz para realizar un descuento directo mensual a su tarjeta de crédito.
+          </p>
+          <p class="text-green-dark/80 mb-6">
+            Obtenga más información en nuestra oficina Administrativa.
+          </p>
+
+          <p class="text-green-dark font-bold">
+            Una vez realizado tu pago, envíanos copia del comprobante al correo: kortega@colinasdelapaz.com o al Whatsapp 6611-3850 con su nombre y número de contrato.
+          </p>
+        </div>
       </div>
 
       <!-- Additional Payment Options -->
@@ -48,3 +102,49 @@
     </div>
   </div>
 </section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const paymentButtons = document.querySelectorAll('.payment-btn') as NodeListOf<HTMLButtonElement>;
+    const paymentInfo = document.getElementById('payment-info');
+    const paymentCards = document.querySelectorAll('.payment-card');
+
+    paymentButtons.forEach(button => {
+      button.addEventListener('click', function() {
+        const buttonId = button.id;
+        
+        // Remove active state from all buttons
+        paymentButtons.forEach(btn => {
+          btn.classList.remove('bg-green-dark', 'text-white');
+          btn.classList.add('text-green-dark');
+        });
+        
+        // Add active state to clicked button
+        button.classList.add('bg-green-dark', 'text-white');
+        button.classList.remove('text-green-dark');
+        
+        // Hide all cards
+        paymentCards.forEach(card => {
+          (card as HTMLElement).classList.add('hidden');
+        });
+        
+        // Show payment info container
+        if (paymentInfo) {
+          paymentInfo.classList.remove('hidden');
+        }
+        
+        // Show corresponding card
+        if (buttonId === 'ach-btn') {
+          const achCard = document.getElementById('ach-card');
+          if (achCard) achCard.classList.remove('hidden');
+        } else if (buttonId === 'yappy-btn') {
+          const yappyCard = document.getElementById('yappy-card');
+          if (yappyCard) yappyCard.classList.remove('hidden');
+        } else if (buttonId === 'descuento-btn') {
+          const descuentoCard = document.getElementById('descuento-card');
+          if (descuentoCard) descuentoCard.classList.remove('hidden');
+        }
+      });
+    });
+  });
+</script>
