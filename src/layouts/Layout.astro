@@ -52,6 +52,12 @@ import '../styles/global.css';
 		<link rel="shortcut icon" href="/favicon.ico">
 		<meta name="msapplication-TileImage" content="/favicon.svg">
 		<meta name="msapplication-TileColor" content="#81BA27">
+		
+		<!-- Open Graph Favicon -->
+		<meta property="og:image" content="https://colinasdelapaz.com/favicon.ico">
+		<meta property="og:image:type" content="image/x-icon">
+		<meta property="og:image:width" content="32">
+		<meta property="og:image:height" content="32">
 		<meta name="generator" content={Astro.generator} />
 		
 		<!-- SEO Meta Tags -->
@@ -115,7 +121,12 @@ import '../styles/global.css';
 			"name": "Colinas de la Paz",
 			"description": "Cementerio y servicios funerarios en Panamá Oeste con más de 15 años de experiencia",
 			"url": "https://colinasdelapaz.com",
-			"logo": "https://colinasdelapaz.com/images/logo.webp",
+			"logo": {
+				"@type": "ImageObject",
+				"url": "https://colinasdelapaz.com/favicon.ico",
+				"width": 32,
+				"height": 32
+			},
 			"address": {
 				"@type": "PostalAddress",
 				"addressRegion": "Panamá Oeste",
