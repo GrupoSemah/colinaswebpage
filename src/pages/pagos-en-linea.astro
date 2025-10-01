@@ -1,0 +1,16 @@
+---
+export const prerender = true;
+
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/ponline/Hero.astro';
+import PaymentMethods from '../components/ponline/PaymentMethods.astro';
+---
+
+<Layout 
+  title="Pagos en Línea | Colinas de la Paz"
+  description="Realiza tus pagos por transferencia, Yappy, descuento directo o en oficina, con opciones cómodas y seguras para tu tranquilidad y la de tu familia."
+  canonical="https://www.colinasdelapaz.com/pagos-en-linea"
+>
+  <Hero />
+  <PaymentMethods />
+</Layout>

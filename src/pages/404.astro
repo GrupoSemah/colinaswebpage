@@ -1,0 +1,122 @@
+---
+export const prerender = true;
+
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout 
+  title="Página No Encontrada - 404 | Colinas de la Paz"
+  description="La página que buscas no existe o ha sido movida. Regresa al inicio para encontrar la información que necesitas sobre nuestros servicios funerarios."
+  noindex={true}
+>
+  <section class="py-24 bg-gradient-to-br from-light-gray/30 via-white to-light-gray/20">
+    <div class="container mx-auto px-6">
+      <div class="max-w-4xl mx-auto text-center">
+        <div class="mb-8">
+          <div class="w-32 h-32 bg-green-primary/10 rounded-full flex items-center justify-center mx-auto mb-8">
+            <svg class="w-16 h-16 text-green-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 12h6m-6-4h6m2 5.291A7.962 7.962 0 0112 15c-2.34 0-4.29-1.009-5.824-2.562M15 9.75a3 3 0 11-6 0 3 3 0 016 0z"></path>
+            </svg>
+          </div>
+        </div>
+        
+        <h1 class="text-6xl lg:text-8xl font-bold text-green-primary mb-4">
+          404
+        </h1>
+        
+        <h2 class="text-3xl lg:text-4xl font-bold text-dark-gray mb-6">
+          Página No Encontrada
+        </h2>
+        
+        <p class="text-lg lg:text-xl text-gray-accessible leading-relaxed mb-8 max-w-2xl mx-auto">
+          Lo sentimos, la página que buscas no existe o ha sido movida. 
+          Te invitamos a regresar al inicio para encontrar la información que necesitas 
+          sobre nuestros servicios funerarios y planes.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-6">
+      <div class="max-w-4xl mx-auto">
+        <div class="bg-light-gray/20 rounded-2xl p-8 lg:p-12">
+          <h3 class="text-2xl font-bold text-dark-gray mb-6 text-center">
+            ¿Qué puedes hacer?
+          </h3>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+            <div class="text-center">
+              <div class="w-16 h-16 bg-green-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg class="w-8 h-8 text-green-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+                </svg>
+              </div>
+              <h4 class="font-semibold text-dark-gray mb-2">Ir al Inicio</h4>
+              <p class="text-sm text-gray-accessible">Regresa a nuestra página principal para explorar todos nuestros servicios</p>
+            </div>
+            
+            <div class="text-center">
+              <div class="w-16 h-16 bg-green-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg class="w-8 h-8 text-green-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+              </div>
+              <h4 class="font-semibold text-dark-gray mb-2">¿Necesitas Ayuda?</h4>
+              <p class="text-sm text-gray-accessible">Contáctanos para recibir información personalizada sobre nuestros servicios</p>
+            </div>
+          </div>
+          
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="/" class="inline-flex items-center gap-2 bg-green-primary text-white px-8 py-3 rounded-full hover:bg-green-dark transition-all duration-300 justify-center">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+              </svg>
+              Ir al Inicio
+            </a>
+            
+            <a href="/agendar-cita" class="inline-flex items-center gap-2 border border-green-primary text-green-primary px-8 py-3 rounded-full hover:bg-green-primary hover:text-white transition-all duration-300 justify-center">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 002 2v10a2 2 0 002 2z"></path>
+              </svg>
+              Contáctanos
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Enlaces Rápidos -->
+  <section class="py-16 bg-gradient-to-br from-light-gray/30 via-white to-light-gray/20">
+    <div class="container mx-auto px-6">
+      <div class="max-w-6xl mx-auto">
+        <h3 class="text-2xl font-bold text-dark-gray mb-8 text-center">
+          Enlaces Rápidos
+        </h3>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <a href="/pre-necesidad" class="bg-white rounded-lg p-6 hover:shadow-lg transition-all duration-300 text-center group">
+            <h4 class="font-semibold text-dark-gray group-hover:text-green-primary transition-colors mb-2">Pre-Necesidad</h4>
+            <p class="text-sm text-gray-accessible">Planifica con anticipación</p>
+          </a>
+          
+          <a href="/necesidad-inmediata" class="bg-white rounded-lg p-6 hover:shadow-lg transition-all duration-300 text-center group">
+            <h4 class="font-semibold text-dark-gray group-hover:text-green-primary transition-colors mb-2">Necesidad Inmediata</h4>
+            <p class="text-sm text-gray-accessible">Asistencia urgente</p>
+          </a>
+          
+          <a href="/servicios-funerarios" class="bg-white rounded-lg p-6 hover:shadow-lg transition-all duration-300 text-center group">
+            <h4 class="font-semibold text-dark-gray group-hover:text-green-primary transition-colors mb-2">Servicios Funerarios</h4>
+            <p class="text-sm text-gray-accessible">Ceremonias y traslados</p>
+          </a>
+          
+          <a href="/preguntas-frecuentes" class="bg-white rounded-lg p-6 hover:shadow-lg transition-all duration-300 text-center group">
+            <h4 class="font-semibold text-dark-gray group-hover:text-green-primary transition-colors mb-2">Preguntas Frecuentes</h4>
+            <p class="text-sm text-gray-accessible">Resuelve tus dudas</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
