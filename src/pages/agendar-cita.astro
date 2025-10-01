@@ -1,0 +1,16 @@
+---
+export const prerender = true;
+
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/contact/Hero.astro';
+import CTA from '../components/contact/CTA.astro';
+---
+
+<Layout 
+  title="Agenda tu visita | Colinas de la Paz | Parque Cementerio en Panamá Oeste"
+  description="Visita nuestras oficinas en el Campo Santo para recibir información sobre planes y servicios, con horarios flexibles y atención cercana."
+  canonical="https://www.colinasdelapaz.com/agendar-cita"
+>
+  <Hero />
+  <CTA />
+</Layout>
