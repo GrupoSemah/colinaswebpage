@@ -1,5 +1,5 @@
 [phases.setup]
-nixPkgs = ["nodejs_20", "npm-9_x"]
+nixPkgs = ["nodejs_20.19.0", "npm-9_x"]
 
 [phases.install]
 cmds = ["npm ci"]
@@ -7,5 +7,6 @@ cmds = ["npm ci"]
 [phases.build]
 cmds = ["npm run build"]
 
-[static_assets]
-directory = "dist"
+[start]
+cmd = "node ./dist/server/entry.mjs"
+ports = ["4321"]
