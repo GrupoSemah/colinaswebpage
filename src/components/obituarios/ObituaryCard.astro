@@ -1,0 +1,60 @@
+---
+interface Props {
+  difunto: string;
+  fecha: string;
+  hora: string;
+  servicio: string;
+  ubicacion: string;
+}
+
+const { difunto, fecha, hora, servicio, ubicacion } = Astro.props;
+---
+
+<div class="bg-white rounded-2xl shadow-md hover:shadow-xl transition-shadow duration-300 p-6 border border-light-gray/30">
+  <!-- Header con icono y nombre -->
+  <div class="flex items-center gap-3 mb-4">
+    <div class="w-12 h-12 bg-green-primary rounded-full flex items-center justify-center flex-shrink-0">
+      <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
+      </svg>
+    </div>
+    <h3 class="text-xl font-bold text-dark-gray flex-1">
+      {difunto}
+    </h3>
+  </div>
+
+  <!-- Tipo de servicio -->
+  <div class="bg-green-primary/10 rounded-lg px-4 py-2 mb-4 text-center">
+    <p class="text-dark-gray font-semibold">
+      {servicio}
+    </p>
+  </div>
+
+  <!-- Detalles del servicio -->
+  <div class="space-y-3">
+    <!-- Fecha -->
+    <div class="flex items-center gap-3 text-dark-gray/80">
+      <svg class="w-5 h-5 text-green-dark flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+      </svg>
+      <span class="text-base">{fecha}</span>
+    </div>
+
+    <!-- Hora -->
+    <div class="flex items-center gap-3 text-dark-gray/80">
+      <svg class="w-5 h-5 text-green-dark flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+      </svg>
+      <span class="text-base">{hora}</span>
+    </div>
+
+    <!-- Ubicación -->
+    <div class="flex items-center gap-3 text-dark-gray/80">
+      <svg class="w-5 h-5 text-green-dark flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+      </svg>
+      <span class="text-base">{ubicacion}</span>
+    </div>
+  </div>
+</div>
