@@ -1,0 +1,105 @@
+---
+---
+
+<section class="py-8 bg-white">
+  <div class="container mx-auto px-6 max-w-5xl">
+    <!-- Background Container -->
+    <div class="bg-[#F5F5F5] rounded-3xl px-8 py-8 md:px-12 md:py-10">
+      <h2 class="text-lg md:text-xl font-light text-dark-gray text-center mb-6">
+        Buscar obituarios
+      </h2>
+      
+      <!-- Formulario de búsqueda -->
+      <div class="space-y-4">
+        <!-- Búsqueda general -->
+        <div class="grid grid-cols-1 sm:grid-cols-[1fr_auto] gap-4">
+          <input 
+            type="text" 
+            id="generalSearch"
+            name="busqueda"
+            class="px-6 py-3 bg-white border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-primary/30 focus:border-green-primary text-dark-gray text-base placeholder:text-gray-400"
+            placeholder="Buscar por nombre, servicio o ubicación..."
+          />
+          
+          <button 
+            type="button"
+            id="searchBtn"
+            class="bg-green-primary text-white font-semibold px-12 py-3 rounded-full hover:bg-green-dark transition-colors duration-300 text-base whitespace-nowrap shadow-md hover:shadow-lg"
+          >
+            Buscar
+          </button>
+        </div>
+
+        <!-- Filtro por fecha -->
+        <div class="flex flex-col sm:flex-row gap-3 items-center justify-center">
+          <label for="dateFilter" class="text-dark-gray text-sm font-medium whitespace-nowrap">
+            Filtrar por fecha:
+          </label>
+          <input 
+            type="date" 
+            id="dateFilter"
+            name="fecha"
+            class="w-auto px-4 py-2 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-primary/30 focus:border-green-primary text-dark-gray text-sm"
+          />
+          <button 
+            type="button"
+            id="clearFiltersBtn"
+            class="text-red-600 hover:text-red-700 font-medium text-sm underline transition-colors duration-300 whitespace-nowrap"
+          >
+            Limpiar filtros
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const generalSearchInput = document.getElementById('generalSearch') as HTMLInputElement;
+    const searchBtn = document.getElementById('searchBtn') as HTMLButtonElement;
+    const dateFilterInput = document.getElementById('dateFilter') as HTMLInputElement;
+    const clearFiltersBtn = document.getElementById('clearFiltersBtn') as HTMLButtonElement;
+    
+    // Función para disparar evento de búsqueda
+    const triggerSearch = () => {
+      const searchText = generalSearchInput?.value.trim().toLowerCase() || '';
+      const selectedDate = dateFilterInput?.value || '';
+      
+      const event = new CustomEvent('filterObituarios', { 
+        detail: { 
+          searchText,
+          date: selectedDate
+        } 
+      });
+      window.dispatchEvent(event);
+    };
+
+    // Búsqueda general al hacer clic en botón
+    searchBtn?.addEventListener('click', triggerSearch);
+
+    // Búsqueda general al presionar Enter
+    generalSearchInput?.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        triggerSearch();
+      }
+    });
+
+    // Filtro por fecha al cambiar
+    dateFilterInput?.addEventListener('change', triggerSearch);
+
+    // Limpiar filtros
+    clearFiltersBtn?.addEventListener('click', () => {
+      if (generalSearchInput) generalSearchInput.value = '';
+      if (dateFilterInput) dateFilterInput.value = '';
+      
+      const event = new CustomEvent('filterObituarios', { 
+        detail: { 
+          searchText: '',
+          date: ''
+        } 
+      });
+      window.dispatchEvent(event);
+    });
+  });
+</script>

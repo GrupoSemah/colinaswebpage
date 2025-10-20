@@ -1,4 +1,4 @@
-const CACHE_NAME = 'colinas-v1';
+const CACHE_NAME = 'colinas-v2';
 const urlsToCache = [
   '/',
   '/contact',
@@ -10,6 +10,7 @@ const urlsToCache = [
   '/ponline',
   '/preneed',
   '/necesidad-inmediata',
+  '/obituarios',
   '/fonts/Gilroy-Light.woff',
   '/fonts/Gilroy-Extrabold.woff',
   '/images/logo.webp',
